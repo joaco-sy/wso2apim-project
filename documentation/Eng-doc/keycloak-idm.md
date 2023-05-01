@@ -1,15 +1,15 @@
-# Configuracion de Keycloak como Identity Provider en WSO2 API Manager
+# Configuration of Keycloak as Identity Provider in WSO2 API Manager
 
-Este instructivo le guiará en el proceso de configuración de Keycloak como Identity Provider para la implementación en la aplicación WSO2 API Manager.
+This guide will guide you through the process of configuring Keycloak as an Identity Provider for implementation in the WSO2 API Manager application.
 
-> Todos los nombres utilizados en este instructivo pueden ser adaptados para cada deploy dependiendo del ambiente en el que se vaya a utilizar. 
+> All names used in this guide can be adapted for each deployment depending on the environment in which it will be used.
 
 [[_TOC_]]
 
 ---
 
 <details>
-<summary> imagenes a configurar</summary>
+<summary>Images to configure</summary>
 
 ![config keycloak idm](../img/config-keycloak-identity-5.png)
 ![config keycloak idm](../img/config-keycloak-identity-6.png)
@@ -18,29 +18,29 @@ Este instructivo le guiará en el proceso de configuración de Keycloak como Ide
 </details>
 
 
-## Configuración de Keycloak
+## Keycloak Configuration
 
-> Para proceder con este instructivo es necesario tener un Realm dedicado a wso2
+> To proceed with this guide, it is necessary to have a Realm dedicated to WSO2.
 
-### Configuración de Client
+### Client Configuration
 
-Vamos a crear un nuevo cliente de Keycloak que utilizaremos en [WSO2 config](#WSO2-config)
+We will create a new Keycloak client that we will use in [WSO2 config](#WSO2-config).
 
-1. Nos ubicamos en ```Clients``` y clickeamos en ```Create```
-2. Le damos un nombre y le damos el root url de wso2 adjuntando la direccion ```/commonauth/```
+1. Go to Clients and click on Create.
+2. Give it a name and add the WSO2 root URL by attaching the /commonauth/ path.
     > ej: \
         > WSO2-login \
         > https:// /commonauth/
 
-3. Dentro de la pestaña ```Settings``` vamos a cambiar el ```Access Type``` a ```confidential```, guardamos
-4. En la pestaña ```Roles``` vamos a crear cuatro roles:
+3. In the Settings tab, change the Access Type to confidential and save it.
+4. In the Roles tab, create four roles:
     > Publisher \
     > Creator \
     > Admin \
     > Subscriber
 
-5. Dentro de la pestaña ```Mappers``` hacemos clic en ```Create```
-6. Cubrimos los siguientes campos y guardamos:
+5. In the Mappers tab, click on Create.
+6. Fill in the following fields and save it:
     > Name: Nombre del mapper \
     > Mapper Type: ```User Client Role``` \
     > Client ID: ```WSO2-login``` \
@@ -50,43 +50,43 @@ Vamos a crear un nuevo cliente de Keycloak que utilizaremos en [WSO2 config](#WS
 
 
 
-### **Configuración de usuarios para las distintas plataformas**
+### **Configuration of users for the different platforms**
 
-A continuación, procederemos a crear los roles para la utilización de las plataformas ```Publisher```, ```Creator```, ```Admin``` y ```Subscriber```. Es posible editar y agregar varios roles con distintos alcances. 
-> Si necesita más información para continuar con ese tema, puede consultar la documentación correspondiente. 
+Next, we will proceed to create the roles for the use of the Publisher, Creator, Admin and Subscriber platforms. It is possible to edit and add several roles with different scopes.
 
->Estos nombres deben ser distintos a los que indicamos, ya que son los valores ```por defecto``` en la documentación y no se consideran seguros. 
+> If you need more information to continue with this topic, you can consult the corresponding documentation.
 
->Tenga en cuenta que los mismos nombres se utilizarán en WSO2.
+> These names should be different from the ones we indicate, as they are the default values in the documentation and are not considered secure.
 
-Ubíquese en la sección de roles y cree tres roles con los nombres para las plataformas: ```publisher```, ```creator```, ```admin``` y ```subscriber```.
-Asigne los usuarios necesarios a los roles creados.
+> Keep in mind that the same names will be used in WSO2.
+
+Go to the roles section and create three roles with the names for the platforms: publisher, creator, admin, and subscriber. Assign the necessary users to the created roles.
 
 ---
 
-## Configuración de Producto WSO2
+## WSO2 Product Configuration
 
-En esta sección vamos a estar configurando la relación de wso2 con Keycloak para la configuración del oauth2.0 y poder iniciar sesión con Keycloak en wso2 con los roles correctamente asignados
+In this section we will be configuring the relationship between WSO2 and Keycloak for OAuth2.0 configuration and to be able to log in with Keycloak in WSO2 with correctly assigned roles.
 
-### **Datos requeridos**
-Para poder configurar la comunicación con Keycloak, vamos a buscar algunos datos en Keycloak que utilizaremos más adelante.
+### **Required Data**
+To configure communication with Keycloak, we are going to look for some data in Keycloak that we will use later.
 
-#### En keycloak
-1. Dentro de nuestro realm en Keycloak vamos a dirigirnos a Realm Settings, en la pestaña General vamos a hacer clic derecho y vamos a copiar el link de OpenID Endpoint Configuration
-2. Nos dirigimos a clients y abrimos el cliente creado en [Configuración de Client](#Configuración-de-Client)
-3. Copiamos nombre del client
-4. Copiamos el secret
+#### In Keycloak
+1. Within our realm in Keycloak, we will go to Realm Settings, in the General tab, right-click and copy the link of OpenID Endpoint Configuration.
+2. Go to clients and open the client created in [Client Configuration](#Configuración-de-Client).
+3. Copy the client name.
+4. Copy the secret.
 
 ### Identity Provider
-> Importante tener en cuenta la relacion de los roles y mapper de la seccion de keycloak, los nombres deben coincidir
+> It is important to take into account the relationship of roles and mappers from the Keycloak section, the names must match.
 
-1. Dentro de la aplicacion ```carbon``` de wso2 nos vamos a ubicar en la pestaña lateral ```Main``` dentro de la seccion ```Identity Providers``` clic en ```Add```
-2. completar con los siguientes datos en basic information:
+1. Inside the carbon application of WSO2, we will go to the Main side tab within the Identity Providers section and click on Add.
+2. Fill in the following data in the Basic Information section:
 
     > Identity Provider Name: keycloak \
     > Display Name: keycloak \
     > Alias: ```https:// /oauth2/token```
-3. completar con los siguientes datos en la seccion ```Claim Configuration```/```Basic Claim Configuration```:
+3. Fill in the following data in the Claim Configuration/Basic Claim Configuration section:
 
     > Identity Provider Claim URIs: (```Add Claim Mapping```)  
     >    | Identity Provider Claim URI | Local Claim URI |
@@ -97,7 +97,7 @@ Para poder configurar la comunicación con Keycloak, vamos a buscar algunos dato
 
     > User ID Claim URI: ```preferred_username``` \
     > Role Claim URI: ```name```
-4. Completar con los siguientes datos en la seccion ```Role Configuration```:
+4. Fill in the following data in the Role Configuration section:
 
     > Identity Provider Roles: (```Add Role Mapping```)
     >   | Identity Provider Role | Local Role |
@@ -106,7 +106,7 @@ Para poder configurar la comunicación con Keycloak, vamos a buscar algunos dato
     >   | publisher | Internal/publisher |
     >   | subscriber | Internal/subscriber
     >   | admin | Internal/admin |
-5. Completar con los siguientes datos en la seccion ```Federated Authenticators```/```OAuth2/OpenID Connect Configuration```:
+5. Fill in the following data in the Federated Authenticators/OAuth2/OpenID Connect Configuration section:
     > | Config | valor |
     > | --- | --- |
     > | Enable OAuth2/OpenID Connect Configuration | ✅ | 
@@ -117,8 +117,3 @@ Para poder configurar la comunicación con Keycloak, vamos a buscar algunos dato
     > | Callback Url | ``https:// /commonauth`` |
     > | Userinfo Endpoint URL | ``https:// /realms/{REALM}/protocol/openid-connect/userinfo`` |
     > | Logout Endpoint URL	| ``https:// /realms/{REALM}/protocol/openid-connect/logout`` |
-
-    
-
-
-

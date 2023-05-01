@@ -1,33 +1,32 @@
-# Configuración de Certificados y de los keystores. 
+# Configuration of Certificates and Keystores.
 
-En el siguiente documento se explica la configuracion de los certificados y los keystores para la implementacion en la aplicacion WSO2 API Manager. 
+The following document explains the configuration of certificates and keystores for implementation in the WSO2 API Manager application.
 
 [[_TOC_]]
 
 ---
 
-## Informacion complementaria
+## Additional Information
 
 <details>
-<summary> 1. Explicación del funcionamiento de los JKS</summary>
+<summary> 1. Explanation of JKS functioning </summary>
 
-wso2carbon.jks: Este keystore contiene el key pair y se usa de forma predeterminada para el almacenamiento de certificados.
+wso2carbon.jks: This keystore contains the key pair and is used by default for storing certificates.
 
-client-truststore.jks: Este keystore se almacenan las claves de confianza predeterminados que contiene los certificados utilizados en la comunicación SSL.
+client-truststore.jks: This keystore stores the default trust keys that contain the certificates used in SSL communication.
 
-> wso2carbon.jks y client-truststore.jks, son los nombres originales de los keystores que vienen de fabrica con el producto WSO2. Al algregarles los certificados y las keys de los difenretes ambientes de client, se decidio cambiarles el nombre a: client-primary-keystore.jks = wso2carbon.jks y client-truststore.jks = client-truststore.jks
+> wso2carbon.jks and client-truststore.jks are the original names of the keystores that come with the WSO2 product. When adding the certificates and keys of different client environments, it was decided to change their names to: client-primary-keystore.jks = wso2carbon.jks and client-truststore.jks = client-truststore.jkss
 
 </details>
 
-## Configuración de certificados 
+## Certificate Configuration
 
-El keystore explorer es un programa que nos permite vkeycloakalizar con mayor facilidad los certificados dentro de un keystore. Utilizaremos este programa para una mayor facilidad y vicibilidad al explicar el funcionamiento, pero tambien se agregara una seccion de configuracion por consola.
+The Keystore Explorer is a program that allows us to easily visualize the certificates within a keystore. We will use this program for greater ease and visibility in explaining the operation, but a console configuration section will also be added.
 
-keystores y contrase;as del wso2 configurados en el toml 
+Keystores and passwords of the WSO2 configured in the TOML.
 
 
-
-### Configuracion Keystores (keystore Explorer)
+### Keystore Configuration (Keystore Explorer)
 
 
 ![asd](../img/keystores-certificate-client.png)
@@ -36,13 +35,10 @@ keystores y contrase;as del wso2 configurados en el toml
 
 ![asd](../img/keystores-certificate-trustore.png)
 
-<!-- 
-### Configuracion Keystores (Consola)
--->
 
-## Configuración de archivos TOML
+## TOML File Configuration
 
-![Esplicacion de la configuracion del toml](../img/keystores-toml.png)
+![TOML Configuration explanation](../img/keystores-toml.png)
 
 ### a
 #### a
