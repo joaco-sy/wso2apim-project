@@ -1,11 +1,10 @@
-# Agregar las variables de entorno de Java al archivo /etc/profile
+---
+#  add Java Environment Variables /etc/profile
 - name: Variables Java al /etc/profile
   become: yes
   shell:  "{{ item }}"
   with_items:
-# Ejecutar el comando para agregar la variable JAVA_HOME al archivo /etc/profile
     - echo export JAVA_HOME=/usr/lib/jvm/java-11-amazon-corretto >> /etc/profile
-# Ejecutar el comando para agregar la variable PATH al archivo /etc/profile
     - echo export PATH=$JAVA_HOME/bin:$PATH >> /etc/profile
 
     

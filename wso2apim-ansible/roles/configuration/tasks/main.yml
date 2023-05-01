@@ -1,5 +1,5 @@
 ---
-- name: Inicio Configuracion
+- name: Configuration
   import_tasks: config.yml
 
 - name: enable

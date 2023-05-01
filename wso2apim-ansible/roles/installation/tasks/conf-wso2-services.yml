@@ -1,4 +1,5 @@
-# Copiar la configuracion del servicio a los nodos correspondientes en el entorno
+---
+# Copy service
 - name: Configuraciones de wso2 - Subo el archivo al /etc/systemd/system/
   become: yes
   copy:

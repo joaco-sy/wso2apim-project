@@ -1,6 +1,6 @@
 ---
-# Copiar la configuracion yml de filebeat a los nodos correspondientes en el entorno
-- name: Copiando yml de configuracion del filebeat
+# Copy config yml filebeat 
+- name: copy yml config filebeat
   become: yes
   copy:
     src: conf-filebeat.yml

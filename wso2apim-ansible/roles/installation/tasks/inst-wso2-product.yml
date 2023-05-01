@@ -1,26 +1,25 @@
-# Variables utilizadas en la task
-
-#Copia del archivo ZIP de WSO2 si ya se encuentra en la maquina local
-- name: (Producto local) Copia del producto  
+---
+# Copy ZIP WSO2 
+- name: Copy product  
   become: yes
   copy:
     src: WSO2.zip
     dest: /tmp/
     mode: 0777
 
-# Descomprimir el archivo ZIP en la carpeta de destino
+# Unzip
 - name: unzips
   become: yes
   ansible.builtin.unarchive:
     src: "/tmp/WSO2.zip"
     dest: "/opt/"
 
-# Renombrar carpeta a wso2
+# Rename wso2
 - name: renombrar wso2 en opt
   become: yes
   shell: mv /opt/wso2am-4.1.0 /opt/wso2
 
-# Eliminar el archivo ZIP de la carpeta temporal
+# Delete ZIP and temp folder
 - name: remove product.zip
   become: yes
   file:

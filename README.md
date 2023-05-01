@@ -37,7 +37,7 @@ This project has as its objective the distributed installation and configuration
 
 Once we meet the requirements, we've ready to continue the installation:
 
-## Files 
+### Files 
 
 clone the repository on the user's machine where you will execute the playbook. Inside the folder /wso2apim-asible/roles/installation/files we will download all the files that we need.
 
@@ -68,7 +68,7 @@ This playbook will:
 - Copy the files for the WSO2 services
 - Execute the first rol configuration for wso2 nodes
 
-## Advance Configuration
+### Advance Configuration
 
 - [Role based access control configuration](./doc/keycloak-RBAC.md)
 

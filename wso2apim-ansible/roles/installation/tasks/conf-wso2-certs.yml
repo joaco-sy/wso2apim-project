@@ -1,5 +1,5 @@
-# Copiar los archivos JKS a los nodos correspondientes en el entorno
-- name: Copiar JKS
+# Copy JKS
+- name: Copyr JKS
   become: yes
   copy:
     src: client-{{ item }}.jks
