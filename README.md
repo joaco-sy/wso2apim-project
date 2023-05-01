@@ -1,46 +1,45 @@
 
-# Instalación de WSO2 distribuida con Ansible
+# WSO2 API Manager Installation with Ansible
 
-Este proyecto tiene como objetivo la instalación distribuida y configuracion de WSO2 usuarios desde Active Directory utilizando keycloak como Identity provider utilizando Ansible como medio de automatización.
+This project has as its objective the distributed installation and configuration of WSO2 API Manager. Using Keycloak as an Identity provider and Ansible as an automation engine.
 
-[[_TOC_]]
-
-## Requisitos
+## Requirements
 
 <details>
 <summary>Cluster</summary>
 
-- 2 servidores para Control Plane
-- 2 servidores para Gateway
-- 2 servidores para Traffic Manager
+- 2 Control Plane Servers
+- 2 Gateway Servers
+- 2 Traffic Manager Servers
+
 </details>
 
 <details>
-<summary>Servidores</summary>
+<summary>Servers</summary>
 
-- Cumplir con los requisitos mencionados en el apartado [requisitos de red](./doc/requisitos%20de%20red.md).
-- RHEL 8 o posterior
-- 2 cores o más
-- 4GB RAM o superior
+- Meet the requirements mentioned in the section [Network Requirements](./doc/requisitos%20de%20red.md).
+- RHEL 8 or +
+- 2 cores o +
+- 4GB RAM o +
 </details>
 
 <details>
-<summary>Maquina del usuario</summary>
+<summary>User's machine</summary>
 
-- Ansible instalado
-- Acceso a internet
-- Acceso a los 6 nodos
-- Acceso al repositorio de git para poder clonarlo
+- Ansible Install
+- Internet Access
+- Access to the 6 nodes
+- Access to the repository
 </details>
 
-## Instalación
 
-Una vez cumplidos los requisitos, continuar con la instalacion:
+## Installation
 
-## Archivos
+Once we meet the requirements, we've ready to continue the installation:
 
-Hacer el clon de este repositorio en la maquina local desde donde se va a ejecutar el playbook
-dentro de la carpeta /roles/apim-install/files/ vamos a descargar dos archivos, por un lado la version de JDK y por otro el wso2, ambos archivos deben tener el nombre indicado para el correcto funcionamiento de los playbooks
+## Files 
+
+clone the repository on the user's machine where you will execute the playbook. Inside the folder /wso2apim-asible/roles/installation/files we will download all the files that we need.
 
 JDK11.rpm:
 ```
@@ -51,45 +50,32 @@ WSO2.zip:
 ```
 WSO2 4.1.0: https://product-dist.wso2.com/products/api-manager/4.1.0/wso2am-4.1.0.zip
 ```
- 
-Para comenzar con la instalación, siga los siguientes pasos:
 
-1. Clone el repositorio en su máquina local.
-2. Acceda al directorio `wso2-ansible`.
-3. Ejecute el siguiente comando para instalar WSO2 en los servidores:
+To start the Installation use this command:
 ```bash
 # ansible-playbook -i inventory-prod.yml main-install.yml
 ```
 
-Este comando realizará las siguientes tareas:
--   Descarga el paquete de WSO2
--   Descarga Java Correto
--   Copia todos los archivos necesarios a cada host
--   Instala Java Correto SDK
--   Descomprime el archivo WSO2 en /opt/wso2
--   Copia el driver de la base de datos
--   Copia los jks truststore y primary-keystore
--   Instala y activa servicio de filebeat
--   Genera archivos de servicio WSO2
--   Ejecuta Configuracion inicial de rol de nodo WSO2
+This playbook will:
+- Download WSO2 product
+- Download Java Correto
+- Copy all files in the nodes
+- Install Java Correto SDK
+- Unzip WSO2 file in /opt/wso2
+- Copy driver for the database
+- Copy the keystores necessary "truststore" y "primary-keystore"
+- Install and enable the Filebeat service
+- Copy the files for the WSO2 services
+- Execute the first rol configuration for wso2 nodes
 
-¡Listo! Ahora debería tener una instalación distribuida de WSO2 utilizando Ansible.
+## Advance Configuration
 
-## Configuraciones posteriores
+- [Role based access control configuration](./doc/keycloak-RBAC.md)
 
-En este apartado ingresamos distintos instructivos para la utilizacion del producto:
+- [LDAPS configuration](./doc/ldaps.md)
 
-- [Configuracion de Scope](./doc/keycloak-RBAC.md)
+- [keycloak configuration as an identity provider](./doc/keycloak-idm.md)
 
-- [Configuracion de LDAPS](./doc/ldaps.md)
+- [keycloak configuration as an KeyManager](./doc/keycloak-km.md)
 
-- [Configuracion de keycloak como identity provider](./doc/keycloak-idm.md)
-
-- [Configuracion de keycloak como KeyManager](./doc/keycloak-km.md)
-
-- [Configuracion de keystores y certificados](./doc/certificates-keystores.md)
-
-<!-- 
-- [Configuracion de keycloak, WSO2 y API con RBAC (Rol Base Access Control)](./doc/conf-post-instalacion/keycloak-RBAC.md)
-
- -->
+- [keystores](./doc/certificates-keystores.md)

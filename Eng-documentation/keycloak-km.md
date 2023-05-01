@@ -13,7 +13,7 @@ En el siguiente archivo se explicara la configuracion de keycloak como keymanage
 
 Para la configuracion de Keycloak en esta implementacion primero se debe crear un nuevo realm exclusivo para el producto (WSO2 API Manager).
 
-> Dentro del ambiente de QA se  creo un Realm llamado ```"Wso2qa"```.
+> Dentro del ambiente de {ambiente} se  creo un Realm llamado ```"Wso2{ambiente}"```.
 
 se debe ir a la pestaña de la izquierda ```"Select realm"``` y seleccionar ```"Add Realm"```.
 
@@ -76,7 +76,7 @@ Dentro de la pestaña  default client scope agregarle el Rol ```"Admin"``` al cl
 ---
 ## Configuracion wso2. ##
 
-El certificado de keycloak para la correcta comunicacion entre  ```keycloak <-> WSO2 API Manager ```, ya se encuentra en el keystore ```"client-trustore.jks"``` dentro del ambiente de QA se utilizo esta nomenclatura {cliente}-trustore.jks siendo ```"client-trustore.jks"``` el nombre final del archivo. 
+El certificado de keycloak para la correcta comunicacion entre  ```keycloak <-> WSO2 API Manager ```, ya se encuentra en el keystore ```"client-trustore.jks"``` dentro del ambiente de {ambiente} se utilizo esta nomenclatura {cliente}-trustore.jks siendo ```"client-trustore.jks"``` el nombre final del archivo. 
 
 > Como el certificado ya esta incluido dentro del jks que se encuentra en el repositorio se puede verificar la existencia del certificado y la correcta configuracion utilizando la herramienta ```"KeyStore Explorer"```
 
@@ -98,6 +98,6 @@ en las pestañas que se encuentran a la izquierda esta la pestaña de KeyManager
 
 ```https://{KeyCloak URL}/realms/{reaml}/.well-known/openid-configuration```
 
-```https://keycloak.qa.client.com/realms/wso2qa/.well-known/openid-configuration```
+```https://keycloak.{ambiente}.client.com/realms/wso2{ambiente}/.well-known/openid-configuration```
 
 ![imagen donde se agrega la wellknown url e import](img/keycloak-key-publisher-import.PNG)

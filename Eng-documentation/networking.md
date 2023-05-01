@@ -9,7 +9,7 @@
 ---
 ## Importante sobre hostnames y certificados:
 
-> Toda la comunicación debe estar encriptada con el certificado de client. Los nombres de los nodos deben coincidir con la información proporcionada por el certificado. Por ejemplo, en QA, los certificados wildcard son para *.qa.client.com. Por lo tanto, se debe configurar los nombres DNS que apuntan a los hosts correspondientes, ya que los hostnames en sí terminan en *.client.com (falta subdominio, dominio “.gov”).
+> Toda la comunicación debe estar encriptada con el certificado de client. Los nombres de los nodos deben coincidir con la información proporcionada por el certificado. Por ejemplo, en {ambiente}, los certificados wildcard son para *.{ambiente}.client.com. Por lo tanto, se debe configurar los nombres DNS que apuntan a los hosts correspondientes, ya que los hostnames en sí terminan en *.client.com (falta subdominio, dominio “.gov”).
 
 Cada uno de los hosts debe tener acceso al haproxy para poder manejar notificaciones y eventos contra el control plane.
 

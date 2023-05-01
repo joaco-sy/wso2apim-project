@@ -73,7 +73,7 @@ Cada vez que uno necesita crear una aplicación/keys para que sea subscriba a un
 
 ### **Creación de rol**
 
-Se debe ingresar al realm correspondiente de la implementación necesaria, en este caso se verá que el realm se llama ```wso2qa``` esto se puede aplicar a cualquier realm. 
+Se debe ingresar al realm correspondiente de la implementación necesaria, en este caso se verá que el realm se llama ```wso2{ambiente}``` esto se puede aplicar a cualquier realm. 
 
 Dentro de la pestaña de ```Roles``` tenemos la opción de crear nuevos Roles para el realm. Aquí seleccionaremos ```Add Role```.
 
@@ -83,7 +83,7 @@ Si vamos a la configuración del Rol ```Action -> Edit```. Aqui se nos presentar
 
 Para agregar usuarios al Rol correspondiente deberemos ir a:
 
-- Realm "Wso2qa"
+- Realm "Wso2{ambiente}"
     - Manage
         - users / groups
 
@@ -159,9 +159,9 @@ Dentro de la misma pestaña de Settings deberemos buscar el campo Acces Type y s
 También se deberá establecer la root URL como la URL del gateway WSO2.
 
 Root URL:
-```https://apim.qa.client.com/ ```
+```https://apim.{ambiente}.client.com/ ```
 
-> esta URL de ejemplo solo se aplica para ambiente de qa
+> esta URL de ejemplo solo se aplica para ambiente de {ambiente}
 
 En la pestaña ```"scopes"```, primero deshabilitar ```Full scope Allowed``` y eliminar todos los valores de ```Assigned Roles``` y solo agregar el client scope creado en los pasos anteriores.
 
@@ -187,7 +187,7 @@ Ingresamos a /devportal y creamos una nueva aplicacion. La ```shared Quota for A
 
 Dentro de la pestaña de Production/Sanbox keys encontraremos el campo Consumer Key y consumer secret. Aquí copiaremos el ```Secret``` y el ```ClientID``` correspondiente. 
 
-> seleccionar la pestaña correspondiente a Keycloak (keycloak-qa en este ejemplo)
+> seleccionar la pestaña correspondiente a Keycloak (keycloak-{ambiente} en este ejemplo)
 
 #### **Subscripción**
 
