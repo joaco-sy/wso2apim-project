@@ -28,14 +28,14 @@
   listen: "restart_apimgw"
 
 # Handler wait port 9711 Traffic Manager
-- name: esperar_TM 9711
+- name: wait_TM 9711
   wait_for:
     port: 9711
     timeout: 300
   listen: "restart_apimtm"
 
 # Handler wait port 9443 Control Plane
-- name: esperar_CP 9443
+- name: wait_CP 9443
   wait_for:
     port: 9443
     timeout: 300

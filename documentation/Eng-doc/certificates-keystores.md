@@ -30,11 +30,11 @@ keystores y contrase;as del wso2 configurados en el toml
 ### Configuracion Keystores (keystore Explorer)
 
 
-![asd](img/keystores-certificate-client.png)
+![asd](../img/keystores-certificate-client.png)
 
-![asd](img/keystores-certificate-gateway.png)
+![asd](../img/keystores-certificate-gateway.png)
 
-![asd](img/keystores-certificate-trustore.png)
+![asd](../img/keystores-certificate-trustore.png)
 
 <!-- 
 ### Configuracion Keystores (Consola)
@@ -42,7 +42,7 @@ keystores y contrase;as del wso2 configurados en el toml
 
 ## Configuración de archivos TOML
 
-![Esplicacion de la configuracion del toml](img/keystores-toml.png)
+![Esplicacion de la configuracion del toml](../img/keystores-toml.png)
 
 ### a
 #### a

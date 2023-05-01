@@ -13,7 +13,7 @@
 
 Cada uno de los hosts debe tener acceso al haproxy para poder manejar notificaciones y eventos contra el control plane.
 
-!["diagrama de red"](img/diagrama-arquitectura.png)
+!["diagrama de red"](../img/diagrama-arquitectura.png)
 
 ---
 ## Reglas Firewall ##
@@ -30,4 +30,4 @@ Para solicitar las reglas de firewall correspondientes, se recomienda utilizar e
 - LS: Logstash
 - DB: Base de Datos
 
-> Una vez realizada la configuración de red, se puede proceder a la instalación detallada en [Inicio](../README.md).
+> Una vez realizada la configuración de red, se puede proceder a la instalación detallada en [Inicio](../../README.md).

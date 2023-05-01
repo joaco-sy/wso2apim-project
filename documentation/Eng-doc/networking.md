@@ -13,7 +13,7 @@ Important notes about hostnames and certificates:
 
 Each of the hosts must have access to haproxy to handle notifications and events against the control plane.
 
-!["Network diagram"](img/diagrama-arquitectura.png)
+!["Network diagram"](../img/diagrama-arquitectura.png)
 
 ---
 # Firewall Rules
@@ -30,4 +30,4 @@ To request the corresponding firewall rules, it is recommended to use the firewa
 - LS: Logstash
 - DB: Database
 
-> Once the network configuration is complete, you can proceed with the detailed installation in [Start](../README.md).
+> Once the network configuration is complete, you can proceed with the detailed installation in [Start](../../README.md).

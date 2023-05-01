@@ -27,7 +27,7 @@ Example Roles:
 
 When RBAC is enabled, the configuration of roles in Keycloak will be required (later in the document, it explains how to do it). In this example, the roles "tsiglas 1 and 2" were enabled and assigned to users "user 1 and 2". RBAC is configured for the API "Siglas" so that only users from the role "Tsiglas1" have access.
 
-![Role operation diagram](img/diagrama-RBAC.png)
+![Role operation diagram](../img/diagrama-RBAC.png)
 </details>
 
 <details>
@@ -41,9 +41,9 @@ Every time an application/keys needs to be created to subscribe to an API, a Cli
 
 > "In the WSO2 Configuration section, there is the application creation section."
 
-![devportal -> apps](img/keycloak-rbac-app.PNG)
+![devportal -> apps](../img/keycloak-rbac-app.PNG)
 
-![devportal -> apps -> keys](img/keycloak-rbac-app-keys.PNG)
+![devportal -> apps -> keys](../img/keycloak-rbac-app-keys.PNG)
 
 </details>
 
@@ -57,7 +57,7 @@ You must enter the corresponding realm for the necessary implementation, in this
 
 Within the Roles tab we have the option to create new Roles for the realm. Here we will select Add Role.
 
-![keycloak -> roles](img/keycloak-rbac-roles.PNG)
+![keycloak -> roles](../img/keycloak-rbac-roles.PNG)
 
 If we go to the Role configuration Action -> Edit. Here we will be presented with the Users in Role tab where we can see the users belonging to the Role.
 
@@ -72,14 +72,14 @@ Here we can add users or entire groups directly.
 > "entire groups can be added, but this will depend on the configuration of the User Stores that Keycloak has configured. See [Keycloak as Identity Provider.](./keycloak-idm.md)."
 
 
-![keycloak -> roles -> users in role](img/keycloak-rbac-roles-users.PNG)
+![keycloak -> roles -> users in role](../img/keycloak-rbac-roles-users.PNG)
 
 
 ### **Creation of new Client Scope**
 
 Within the Client Scope tab, we have the option to create new Client Scopes for the realm. Here we will select Create.
 
-![keycloak -> roles -> Cleint Scope](img/keycloak-rbac-clientscope.PNG)
+![keycloak -> roles -> Cleint Scope](../img/keycloak-rbac-clientscope.PNG)
 
 If we go to the Client Scope configuration Action -> Edit, we will see the Mappers / Scope tab.
 
@@ -110,7 +110,7 @@ Moving on to the Scope tab, we will select the Role created earlier, which conta
 
 > We must remove all roles and leave only the authorized one.
 
-![keycloak->roles->CleintScope->scope](img/keycloak-rbac-clientscope-scope.PNG)
+![keycloak->roles->CleintScope->scope](../img/keycloak-rbac-clientscope-scope.PNG)
 
 ### **Client Configuration**
 
@@ -125,7 +125,7 @@ The client to be configured is related to the application created from the DevPo
 
 Select the corresponding realm, go to the clients tab and select "Create"
 
-![keycloak->client->addclient](img/keycloak-rbac-client-create.PNG)
+![keycloak->client->addclient](../img/keycloak-rbac-client-create.PNG)
 
 </details>
 
@@ -133,7 +133,7 @@ Select the corresponding realm, go to the clients tab and select "Create"
 
 In the same Settings tab, we must look for the Access Type field and select "confidential" as the access type.
 
-![keycloak->client->settings](img/keycloak-rbac-client-settings.PNG)
+![keycloak->client->settings](../img/keycloak-rbac-client-settings.PNG)
 
 You should also set the root URL as the WSO2 gateway URL.
 
@@ -160,9 +160,9 @@ We access /devportal and create a new application. The shared Quota for Applicat
 
 > see document  [Managment Token Quotas](./WorkInProgress.md).
 
-![devportal -> apps](img/keycloak-rbac-app.PNG)
+![devportal -> apps](../img/keycloak-rbac-app.PNG)
 
-![devportal -> apps -> keys](img/keycloak-rbac-app-keys.PNG)
+![devportal -> apps -> keys](../img/keycloak-rbac-app-keys.PNG)
 
 Under the Production/Sanbox keys tab, we find the Consumer Key and Consumer Secret fields. Here we will copy the corresponding Secret and ClientID.
 
@@ -180,7 +180,7 @@ In the Subscription tab, we can subscribe to the corresponding API by clicking t
 
 From the /publisher home page, to configure scopes and establish the relationship between WSO2 and Keycloak scopes, we must go to the Scopes tab and create a new scope with the same name as the Role generated in Keycloak.
 
-![publisher-scope](img/keycloak-rbac-publisher-scope.PNG)
+![publisher-scope](../img/keycloak-rbac-publisher-scope.PNG)
 
 #### **Role Configuration**
 
@@ -191,11 +191,11 @@ Under the Resources tab:
 
 We can see the different claims with which we can interact. In each of these, we can configure and/or restrict access using the scopes we created.
 
-![publisher-scope-API-resources](img/keycloak-rbac-pusblisher-api-resources.PNG)
+![publisher-scope-API-resources](../img/keycloak-rbac-pusblisher-api-resources.PNG)
 
-![publisher-scope-API-resources-claim](img/keycloak-rbac-pusblisher-api-resources-claim.PNG)
+![publisher-scope-API-resources-claim](../img/keycloak-rbac-pusblisher-api-resources-claim.PNG)
 ---
 > Do not forget that with each change made to the API, a new revision of the API must be deployed.
 
-![config keycloak RBAC](img/keycloak-rbac-pusblisher-api-deploy.PNG)
+![config keycloak RBAC](../img/keycloak-rbac-pusblisher-api-deploy.PNG)
 

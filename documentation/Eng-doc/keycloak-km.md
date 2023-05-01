@@ -17,7 +17,7 @@ Para la configuracion de Keycloak en esta implementacion primero se debe crear u
 
 se debe ir a la pestaña de la izquierda ```"Select realm"``` y seleccionar ```"Add Realm"```.
 
-![keycloak -> realm](img/keycloak-key-realm.PNG)
+![keycloak -> realm](../img/keycloak-key-realm.PNG)
 
 ### **Creacion del Cliente**
 
@@ -33,7 +33,7 @@ Dentro de la pestaña de ```"Clients"``` crear un nuevo cliente con el boton ```
 ### **Configuracion del Cliente**
 
 
-![keycloak -> client -> apim client](img/keycloak-key-apimclient.PNG)
+![keycloak -> client -> apim client](../img/keycloak-key-apimclient.PNG)
 
 Se encontrara con los campos ```"root URL"```, ```"valid redirect URL"```, ```"admin URL"``` y ```"web origin"```. Estas son los campos escenciales para que esta configuracion funcione. 
 
@@ -60,7 +60,7 @@ Se encontrara con los campos ```"root URL"```, ```"valid redirect URL"```, ```"a
 
 Dentro de la pestaña credenciales dentro del cliente (```"apim-client"```, en este caso) se debe generar el ```“Secret”``` sino esta ya generado, el clientID y el Client Secret hay que copiarlos, asi se puede configurar el keymanager del lado de la aplicacion WSO2 API Manager.
 
-![keycloak -> client -> apim client -> credentials](img/keycloak-key-apimclient-credential.PNG)
+![keycloak -> client -> apim client -> credentials](../img/keycloak-key-apimclient-credential.PNG)
 
 #### **Scope del Cliente (apim-client)**
 
@@ -71,7 +71,7 @@ Recordar ingresar a la pestaña de Scope y deshabilitar el full scope del client
 
 Dentro de la pestaña  default client scope agregarle el Rol ```"Admin"``` al cliente si no hay ya un rol configurado que cumpla esta funcion.
 
-![settings del client-apim service acount role](img/keycloak-key-apimclient-sar.PNG)
+![settings del client-apim service acount role](../img/keycloak-key-apimclient-sar.PNG)
 
 ---
 ## Configuracion wso2. ##
@@ -80,13 +80,13 @@ El certificado de keycloak para la correcta comunicacion entre  ```keycloak <-> 
 
 > Como el certificado ya esta incluido dentro del jks que se encuentra en el repositorio se puede verificar la existencia del certificado y la correcta configuracion utilizando la herramienta ```"KeyStore Explorer"```
 
-![imagen de certificado usando keystore client](img/keycloak-key-certs.PNG)
+![imagen de certificado usando keystore client](../img/keycloak-key-certs.PNG)
 
 logearse en ```https://<<apim.URL>>/admin```
 
 en las pestañas que se encuentran a la izquierda esta la pestaña de KeyManagers aqui se muestran todos los keymanagers que WSO2 esta utilizando en el momento.
 
-![imagen de /admin > keystore > add keystore](img/keycloak-key-publisher-add.PNG)
+![imagen de /admin > keystore > add keystore](../img/keycloak-key-publisher-add.PNG)
 
 1. ir a la pestaña de key manager y hacer click en add key manager.
 2. seleccionar keycloak como el tipo de keymanager.
@@ -100,4 +100,4 @@ en las pestañas que se encuentran a la izquierda esta la pestaña de KeyManager
 
 ```https://keycloak.{ambiente}.client.com/realms/wso2{ambiente}/.well-known/openid-configuration```
 
-![imagen donde se agrega la wellknown url e import](img/keycloak-key-publisher-import.PNG)
+![imagen donde se agrega la wellknown url e import](../img/keycloak-key-publisher-import.PNG)

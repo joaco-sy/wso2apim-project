@@ -11,9 +11,9 @@ Este instructivo le guiará en el proceso de configuración de Keycloak como Ide
 <details>
 <summary> imagenes a configurar</summary>
 
-![config keycloak idm](img/config-keycloak-identity-5.png)
-![config keycloak idm](img/config-keycloak-identity-6.png)
-![config keycloak idm](img/config-keycloak-identity-7.png)
+![config keycloak idm](../img/config-keycloak-identity-5.png)
+![config keycloak idm](../img/config-keycloak-identity-6.png)
+![config keycloak idm](../img/config-keycloak-identity-7.png)
 
 </details>
 
