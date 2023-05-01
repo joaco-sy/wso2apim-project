@@ -1,0 +1,102 @@
+### Este archivo es la configuración del control plane de WSO2 ###
+
+[server] 
+hostname = "apim.client.com"   # Agrupacion de nodos de Control Plane
+node_ip = "127.0.0.147"
+server_role = "control-plane"       # Rol del nodo (define la funcion del servicio)
+base_path = "${carbon.protocol}://${carbon.host}:${carbon.management.port}"
+
+[user_store]
+type = "database_unique_id"
+
+[super_admin]                       # Se define la cuenta de superadmin (se guarda en la base de datos $shared), misma configuracion en todos los nodos para que funcione correctamente
+username = "client-user"
+password = "client-password"
+create_admin_account = true
+
+[database.apim_db]                  # Configuracion de la base de datos que se urilizará para los Control Plane
+type = "mssql"
+url = "jdbc:sqlserver://client.client.com:9999;databaseName=WSO2AM_DB;encrypt=true;TrustServerCertificate=True;SendStringParametersAsUnicode=false"
+username = "USR_DB_WSO2AM"
+password = "PASS_DB_WSO2AM"
+
+[database.shared_db]                # Definicion de la conexion a la base de datos $shared que será utilizada por todo el cluster WSO2
+type = "mssql"
+url = "jdbc:sqlserver://client.client.com:9999;databaseName=WSO2SHARED_DB;encrypt=true;TrustServerCertificate=True;SendStringParametersAsUnicode=false"
+username = "USR_DB_WSO2SHARED"
+password = "PASS_DB_WSO2SHARED"
+
+[keystore.tls]                      # Definicion del archivo JKS en el que se encuentran los keypairs y certificados publicos
+file_name =  "client-primary-keystore.jks"
+type =  "JKS"
+password =  "passwd"
+alias =  "client"                 # Alias del keypair que se va a utilizar en la consola web
+key_password =  "passwd"
+
+[truststore]                        # Definicion del archivo JKS para los CA y claves publicas de los servicios externos
+file_name = "client-truststore.jks"
+type = "JKS"
+password = "passwd"
+alias =  "client"                 # Clave publica especifica para establecer comunicacion segura dentro del cluster
+key_password =  "passwd"
+
+[[apim.gateway.environment]]        # Definicion de la informacion perteneciente al API Gateway (Gateway Nodes Front)
+name = "Default"
+type = "hybrid"
+display_in_api_console = true
+description = "This is a hybrid gateway that handles both production and sandbox token traffic."
+show_as_token_endpoint_url = true
+service_url = "https://apigw.client.com/services/"
+https_endpoint = "https://apigw.client.com"
+
+[apim.devportal]                    # Definicion de la url de devportal
+url = "https://apim.client.com/devportal"
+
+[transport.https.properties]        # Validacion de los puertos que se estaran utilizando
+proxyPort = 443                     # Puerto haproxy
+
+
+[apim.event_hub]                    # Configuracion del endpoint de eventos
+enable = true
+username = "$ref{super_admin.username}"
+password = "$ref{super_admin.password}"
+service_url = "https://localhost:${mgt.transport.https.port}/services/"
+event_listening_endpoints = ["tcp://localhost:5672"]    # equivalente a CP 02
+event_duplicate_url = ["tcp://clientapimcp01.client.com:5672"]     # CP 01
+
+[[apim.event_hub.publish.url_group]]    # Configuración endpoints Apache Kafka CP1
+urls = ["tcp://clientapimcp01.client.com:9611"]
+auth_urls = ["ssl://clientapimcp01.client.com:9711"]
+
+[[apim.event_hub.publish.url_group]]    # Configuración endpoints Apache Kafka CP2
+urls = ["tcp://clientapimcp02.client.com:9611"]
+auth_urls = ["ssl://clientapimcp02.client.com:9711"]
+
+[apim.key_manager]                  # Configuracion key manager local (embeded) en los control planes
+service_url = "https://apim.client.com/services/"
+username = "$ref{super_admin.username}"
+password = "$ref{super_admin.password}"
+type = "default"
+
+[[event_handler]]
+name="userPostSelfRegistration"
+subscriptions=["POST_ADD_USER"]
+
+[service_provider]
+sp_name_regex = "^[\\sa-zA-Z0-9._-]*$"
+
+[[event_listener]]                  # Define el event listener "token_revocation" en orden 1
+id = "token_revocation"
+type = "org.wso2.carbon.identity.core.handler.AbstractIdentityHandler"
+name = "org.wso2.is.notification.ApimOauthEventInterceptor"
+order = 1
+
+[event_listener.properties]         # Define la seguridad de el event listener
+notification_endpoint = "https://apim.client.com/internal/data/v1/notify"
+username = "${admin.username}"
+password = "${admin.password}"
+'header.X-WSO2-KEY-MANAGER' = "default"
+
+[apim.analytics] 
+enable = false
+type = "elk" 

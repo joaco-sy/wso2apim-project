@@ -1,0 +1,12 @@
+---
+# Copiar la configuracion yml de filebeat a los nodos correspondientes en el entorno
+- name: Copiando yml de configuracion del filebeat
+  become: yes
+  copy:
+    src: conf-filebeat.yml
+    dest: /etc/filebeat/filebeat.yml
+    owner: root
+    group: root
+    mode: 0644
+  notify: "restartfilebeat"
+ 

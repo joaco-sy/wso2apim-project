@@ -1,0 +1,28 @@
+ Descargar el paquete de Java Amazon Corretto en la carpeta temporal de java
+ - name: Descarga java en java-temp
+   ansible.builtin.get_url:
+     url: https://corretto.aws/downloads/latest/amazon-corretto-11-x64-linux-jdk.rpm 
+     dest: /tmp
+     mode: 0777
+   environment: 
+     https_proxy: http://proxy-ha.client.com:80
+
+- name: copy java en java-temp
+  copy:
+    src: JDK11.rpm 
+    dest: /tmp
+    mode: 0777
+
+# Instalar el paquete de JAva Amazon Corretto desde el archivo RPM descargado
+- name: Instalar java correto
+  become: yes
+  yum: 
+    name: /tmp/JDK11.rpm
+    state: present 
+   
+# Eliminar el archivo RPM temporal después de la instalación
+- name: remove corretto-temp
+  become: yes
+  file:
+    path: /tmp/JDK11.rpm
+    state: absent

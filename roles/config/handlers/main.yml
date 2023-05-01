@@ -1,0 +1,42 @@
+---
+
+# Handlers de Ansible para manejar el reinicio de servicios y espera de conexión en diferentes puertos
+
+# Handler para reiniciar el servicio de WSO2
+- name: restart_wso2
+  become: yes
+  service: 
+    name: wso2.service
+    state: restarted
+    enabled: yes
+  listen: "restart_apimtm"
+
+- name: restart_wso2
+  become: yes
+  service: 
+    name: wso2.service
+    state: restarted
+    enabled: yes
+  listen: "restart_apimcp"
+
+- name: restart_wso2
+  become: yes
+  service: 
+    name: wso2.service
+    state: restarted
+    enabled: yes
+  listen: "restart_apimgw"
+
+# Handler para esperar a que se establezca la conexión en el puerto 9711 en nodos Traffic Manager
+- name: esperar_TM 9711
+  wait_for:
+    port: 9711
+    timeout: 300
+  listen: "restart_apimtm"
+
+# Handler para esperar a que se establezca la conexión en el puerto 9443 en nodos Control Plane
+- name: esperar_CP 9443
+  wait_for:
+    port: 9443
+    timeout: 300
+  listen: "restart_apimcp"

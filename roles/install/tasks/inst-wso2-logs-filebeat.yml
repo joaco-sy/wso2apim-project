@@ -1,0 +1,20 @@
+# copia el paquete de Filebeat en un archivo temporal
+- name: Descarga filebeat en filebeat-temp
+  copy:
+    src: filebeat-8.2.3-x86_64.rpm
+    dest: /tmp
+    mode: 0777
+
+# Instalar el paquete de Filebeat desde el archivo RPM descargado
+- name: Instalar filebeat
+  become: yes
+  yum: 
+    name: /tmp/filebeat-8.2.3-x86_64.rpm
+    state: present 
+   
+# Eliminar el archivo RPM temporal después de la instalación
+- name: remove filebeat-temp
+  become: yes
+  file:
+    path: /tmp/filebeat-8.2.3-x86_64.rpm
+    state: absent

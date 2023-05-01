@@ -1,0 +1,19 @@
+[Unit]
+Description=Control Plane - WSO2 API Manager 4.1.0 Distributed 
+After=network.target
+
+[Service]
+ExecStart=/bin/bash -c 'JAVA_HOME=/usr/lib/jvm/java-11-amazon-corretto sh /opt/wso2/bin/api-manager.sh -Dprofile=traffic-manager start'
+ExecRestart=/bin/bash -c 'JAVA_HOME=/usr/lib/jvm/java-11-amazon-corretto sh /opt/wso2/bin/api-manager.sh -Dprofile=traffic-manager restart'
+ExecStop=/bin/bash -c 'JAVA_HOME=/usr/lib/jvm/java-11-amazon-corretto sh /opt/wso2/bin/api-manager.sh -Dprofile=traffic-manager stop'
+PIDFile=/opt/wso2/wso2carbon.pid
+User=root
+Group=root
+Type=forking
+Restart=on-failure
+RestartSec=5
+StartLimitInterval=90s
+StartLimitBurst=3
+
+[Install]
+WantedBy=multi-user.target

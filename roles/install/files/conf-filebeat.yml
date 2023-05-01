@@ -1,0 +1,17 @@
+filebeat.inputs:
+- type: log
+  enabled: true
+  paths:
+    - /opt/wso2/repository/logs/audit.log
+    - /opt/wso2/repository/logs/wso2carbon.log
+    - /opt/wso2/repository/logs/wso2-apigw-errors.log
+    - /opt/wso2/repository/logs/api.log
+  fields:
+    granja: wso2
+output.logstash:
+  hosts: [""]
+  loadbalance: true
+  index: prodwso2
+  
+
+  

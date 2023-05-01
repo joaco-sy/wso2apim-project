@@ -1,0 +1,10 @@
+# El task se encarga de copiar el controlador JDBC para SQL Server en el directorio correspondiente en el nodo de destino.
+# Este controlador es necesario para la conexión de WSO2 con una base de datos de SQL Server
+- name: Copy de los driver
+  become: yes
+  copy:
+    src: mssql-jdbc-11.2.1.jre11.jar
+    dest: /opt/wso2/repository/components/lib/
+    owner: root
+    group: root
+    mode: 0600

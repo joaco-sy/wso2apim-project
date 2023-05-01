@@ -1,0 +1,62 @@
+### Este archivo es la configuración del Traffic Control de WSO2 ###
+#
+[server] 
+hostname = "apimtm.client.com" # Agrupacion de nodos de Traffic Manager
+node_ip = "127.0.0.148"
+server_role = "traffic-manager"     # Rol del nodo (define la funcion del servicio)
+
+[transport.https.properties]        # Validacion de los puertos que se estaran utilizando
+proxyPort = 443                     # Puerto haproxy
+
+[user_store]
+type = "database_unique_id"
+ 
+[super_admin]                       # Se define la cuenta de superadmin (se guarda en la base de datos $shared), misma configuracion en todos los nodos para que funcione correctamente
+username = "client-user"
+password = "client-password"
+create_admin_account = true
+
+[database.shared_db]                # Definicion de la conexion a la base de datos $shared que será utilizada por todo el cluster WSO2
+type = "mssql"
+url = "jdbc:sqlserver://client.client.com:9999;databaseName=WSO2SHARED_DB;encrypt=true;TrustServerCertificate=True;SendStringParametersAsUnicode=false"
+username = "USR_DB_WSO2SHARED"
+password = "PASS_DB_WSO2SHARED"
+
+[keystore.tls]                      # Definicion del archivo JKS en el que se encuentran los keypairs y certificados publicos
+file_name =  "client-primary-keystore.jks"
+type =  "JKS"
+password =  "passwd"
+alias =  "client"                 # Alias del keypair que se va a utilizar en la consola web
+key_password =  "passwd"
+
+[truststore]                        # Definicion del archivo JKS para los CA y claves publicas de los servicios externos
+file_name = "client-truststore.jks"
+type = "JKS"
+password = "passwd"
+alias =  "client"                 # Clave publica especifica para establecer comunicacion segura dentro del cluster
+key_password =  "passwd"
+
+[apim.event_hub]                    # Configuracion del endpoint de eventos
+enable = true
+username = "$ref{super_admin.username}"
+password = "$ref{super_admin.password}"
+service_url = "https://apim.client.com/services/"
+event_listening_endpoints = ["tcp://clientapimcp01.client.com:5672", "tcp://clientapimcp02.client.com:5672"]
+
+[apim.throttling]                   # Seteo de los Traffic manager
+event_duplicate_url = ["tcp://clientapimtm02.client.com:5672"]     # TM2
+throttle_decision_endpoints = ["tcp://localhost:5672"]              # TM1
+
+[apim.analytics]
+enable = false
+type = "elk" 
+
+[apim.key_manager]                  # Configuracion key manager local (embeded) en los control planes
+service_url = "https://apim.client.com/services/"
+username = "$ref{super_admin.username}"
+password = "$ref{super_admin.password}"
+ 
+[apim.oauth_config]                 # Definicion endpoint de "token_revocation"
+revoke_endpoint = "https://apim.client.com/oauth2/revoke"
+enable_token_encryption = false
+enable_token_hashing = false

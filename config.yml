@@ -1,0 +1,5 @@
+# Configurar WSO2 en todos los nodos
+- hosts: apimtm, apimcp, apimgw
+  roles:
+    - config
+

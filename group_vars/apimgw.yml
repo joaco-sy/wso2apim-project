@@ -1,0 +1,4 @@
+---
+log4j2: log4j2GW.properties
+service: wso2-gw.service
+clusterRole: gateway-worker

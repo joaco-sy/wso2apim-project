@@ -1,0 +1,6 @@
+---
+- name: Inicio Configuracion
+  import_tasks: config.yml
+
+- name: enable
+  import_tasks: service-enable.yml

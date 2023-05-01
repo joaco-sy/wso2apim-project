@@ -1,0 +1,26 @@
+# Este playbook de Ansible tiene tres tareas: 
+
+# Subir archivos de configuración de WSO2 a los nodos correspondientes.
+# Subir archivos de configuración de logs de WSO2 a todos los nodos.
+
+- name: Configuraciones de wso2 - Subo el archivo al repository/conf/
+  become: yes
+  copy:
+      src: "{{ tomlfile }}"
+      dest: /opt/wso2/repository/conf/deployment.toml
+      owner: root
+      group: root
+      mode: 0600
+  # notify: "restart_{{ group_names }}"
+
+
+
+- name: Configuraciones logs de wso2 - Subo el archivo al repository/conf
+  become: yes
+  copy:
+      src: "{{ log4j2 }}"
+      dest: /opt/wso2/repository/conf/log4j2.properties
+      owner: root
+      group: root
+      mode: 0600
+  # notify: "restart_{{ group_names }}"

@@ -1,0 +1,50 @@
+CP1,DB,1433,TCP,DB. Shared DB
+CP1,HA,433,TCP,Gateway Service. Gateway Endpoint. DevPortal. key_manager. Notification Endpoint
+CP1,CP2,5672,TCP,Hub event_duplicate_url
+CP1,CP2,9711,TCP,Hub Publish urls
+CP1,CP2,9611,TCP,Hub Publish auth_urls
+CP1,LS,5044,TCP,Losgstash
+CP2,DB,1433,TCP,DB. Shared DB
+CP2,HA,433,TCP,Gateway Service. Gateway Endpoint. DevPortal. key_manager. Notification Endpoint
+CP2,CP1,5672,TCP,Hub event_duplicate_url
+CP2,CP1,9711,TCP,Hub Publish urls
+CP2,CP1,9611,TCP,Hub Publish auth_urls
+CP2,LS,5044,TCP,Losgstash
+GW1,DB,1433,TCP,Shared DB
+GW1,HA,433,TCP,key_manager. event_hub service_url.
+GW1,CP1,5672,TCP,event_hub event_listening_endpoints
+GW1,CP2,5672,TCP,event_hub event_listening_endpoints
+GW1,TM1,5672,TCP,throttling throttle_decision_endpoints
+GW1,TM2,5672,TCP,throttling throttle_decision_endpoints
+GW1,TM1,9611,TCP,trhottling.url_group traffic_manager_urls
+GW1,TM1,9711,TCP,trhottling.url_group traffic_manager_auth_urls
+GW1,TM2,9611,TCP,trhottling.url_group traffic_manager_urls
+GW1,TM2,9711,TCP,trhottling.url_group traffic_manager_auth_urls
+GW1,LS,5044,TCP,Losgstash
+GW2,DB,1433,TCP,Shared DB
+GW2,HA,433,TCP,key_manager. event_hub service_url.
+GW2,CP1,5672,TCP,event_hub event_listening_endpoints
+GW2,CP2,5672,TCP,event_hub event_listening_endpoints
+GW2,TM1,5672,TCP,throttling throttle_decision_endpoints
+GW2,TM2,5672,TCP,throttling throttle_decision_endpoints
+GW2,TM1,9611,TCP,trhottling.url_group traffic_manager_urls
+GW2,TM1,9711,TCP,trhottling.url_group traffic_manager_auth_urls
+GW2,TM2,9611,TCP,trhottling.url_group traffic_manager_urls
+GW2,TM2,9711,TCP,trhottling.url_group traffic_manager_auth_urls
+GW2,LS,5044,TCP,Losgstash
+TM1,DB,1433,TCP,Shared DB
+TM1,HA,433,TCP,event_hub service_url. key_manager service_url. oauth_config revoke_endpoint
+TM1,CP1,5672,TCP,event_hub event_listening_endpoints
+TM1,CP2,5672,TCP,event_hub event_listening_endpoints
+TM1,TM2,5672,TCP,throttling event_duplicate_url
+TM1,LS,5044,TCP,Losgstash
+TM2,DB,1433,TCP,Shared DB
+TM2,HA,433,TCP,event_hub service_url. key_manager service_url. oauth_config revoke_endpoint
+TM2,CP1,5672,TCP,event_hub event_listening_endpoints
+TM2,CP2,5672,TCP,event_hub event_listening_endpoints
+TM2,TM1,5672,TCP,throttling event_duplicate_url
+TM2,LS,5044,TCP,Losgstash
+HA,CP1,9443,TCP,web console access
+HA,CP2,9443,TCP,web console access
+HA,GW01,8243,TCP,api gateway
+HA,GW02,8243,TCP,api gateway

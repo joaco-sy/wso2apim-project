@@ -1,0 +1,9 @@
+# Copiar la configuracion del servicio a los nodos correspondientes en el entorno
+- name: Configuraciones de wso2 - Subo el archivo al /etc/systemd/system/
+  become: yes
+  copy:
+      src: ""{{ service }}""
+      dest: /etc/systemd/system/wso2.service
+      owner: root
+      group: root
+      mode: 0755

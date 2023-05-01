@@ -1,0 +1,7 @@
+---
+- name: restart_wso2
+  become: yes
+  service: 
+    name: wso2.service
+    state: stopped
+    enabled: yes

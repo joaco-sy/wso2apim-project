@@ -1,0 +1,27 @@
+---
+ - name: instalacion wso2
+   import_tasks: inst-wso2-product.yml
+
+ - name: instalacion java
+   import_tasks: inst-wso2-java.yml
+ 
+ - name: config java vars
+   import_tasks: conf-wso2-java.yml
+
+ - name: role preset
+   import_tasks: conf-wso2-roles.yml
+
+ - name: instalacion filebeat
+   import_tasks: inst-wso2-logs-filebeat.yml
+   
+ - name: configurar filebeat
+   import_tasks: conf-wso2-filebeat.yml
+  
+ - name: creacion de los services
+   import_tasks: conf-wso2-services.yml
+
+- name: copia keystores
+  import_tasks: conf-wso2-certs-client.yml
+  
+ - name: instalacion conector mssql 
+   import_tasks: inst-wso2-db-mssql.yml

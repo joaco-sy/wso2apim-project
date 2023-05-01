@@ -1,0 +1,12 @@
+# Copiar los archivos JKS a los nodos correspondientes en el entorno
+- name: Copiar JKS
+  become: yes
+  copy:
+    src: client-{{ item }}.jks
+    dest: /opt/wso2/repository/resources/security/client-{{ item }}.jks
+    owner: root
+    group: root
+    mode: 0600
+  loop:
+    - primary-keystore
+    - truststore

@@ -1,0 +1,4 @@
+---
+- name: correr configuracion de role de wso2
+  become: yes
+  shell: "/bin/bash /opt/wso2/bin/profileSetup.sh -Dprofile={{ clusterRole }}"
